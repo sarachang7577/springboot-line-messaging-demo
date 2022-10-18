@@ -27,6 +27,11 @@ public class LineMessageController {
     @Autowired
     LineMessageService lineMessageService;
 
+    @PostMapping("/send/text")
+    public void sendTextMessage(@RequestBody SendMessageDto sendMessage) {
+        lineMessageService.sendTextMessage(sendMessage);
+    }
+
     @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
         lineMessageService.handleTextMessageEvent(event);

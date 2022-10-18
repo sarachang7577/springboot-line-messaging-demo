@@ -22,6 +22,9 @@ public class LineMessageService {
     @Autowired
     private LineMessageRepository lineMessageRepository;
 
+    @Autowired
+    private LineMessagingClient lineMessagingClient;
+
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         TextMessageContent message = event.getMessage();
         LineMessage lineMessage = new LineMessage();
@@ -40,5 +43,11 @@ public class LineMessageService {
         lineMessage.setUserId(event.getSource().getUserId());
         lineMessage.setMessageHistory(daos);
         lineMessageRepository.save(lineMessage);
+    }
+
+    public void sendTextMessage(SendMessageDto sendMessage) {
+        TextMessage message = new TextMessage(sendMessage.getTextMessage());
+        PushMessage pushMessage = new PushMessage(sendMessage.getUserId(), message);
+        lineMessagingClient.pushMessage(pushMessage);
     }
 }
