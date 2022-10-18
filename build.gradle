@@ -15,11 +15,11 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'com.linecorp.bot', name: 'line-bot-spring-boot', version: '4.5.0'
 	implementation group: 'com.linecorp.bot', name: 'line-bot-model', version: '4.5.0'
 	implementation group: 'com.linecorp.bot', name: 'line-bot-api-client', version: '4.5.0'
 	implementation group: 'com.linecorp.bot', name: 'line-bot-servlet', version: '4.5.0'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
