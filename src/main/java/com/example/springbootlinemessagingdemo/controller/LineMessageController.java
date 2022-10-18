@@ -27,6 +27,16 @@ public class LineMessageController {
     @Autowired
     LineMessageService lineMessageService;
 
+    @GetMapping("/{userId}")
+    public LineMessage getMessage(@PathVariable String userId) {
+        return lineMessageService.getMessage(userId);
+    }
+
+    @GetMapping("/userIds")
+    public List<String> getUserIds() {
+        return lineMessageService.getUserIds();
+    }
+
     @PostMapping("/send/text")
     public void sendTextMessage(@RequestBody SendMessageDto sendMessage) {
         lineMessageService.sendTextMessage(sendMessage);

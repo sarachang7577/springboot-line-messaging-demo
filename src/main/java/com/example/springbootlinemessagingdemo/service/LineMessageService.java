@@ -50,4 +50,13 @@ public class LineMessageService {
         PushMessage pushMessage = new PushMessage(sendMessage.getUserId(), message);
         lineMessagingClient.pushMessage(pushMessage);
     }
+
+    public LineMessage getMessage(String userId) {
+        return lineMessageRepository.findById(userId).orElse(null);
+    }
+
+    public List<String> getUserIds() {
+        List<LineMessage> msgList = lineMessageRepository.findAll();
+        return msgList.stream().map(LineMessage::getUserId).collect(Collectors.toList());
+    }
 }
